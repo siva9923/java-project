@@ -6,7 +6,6 @@ pipeline {
 	    steps {
 		git 'https://github.com/siva9923/java-project.git'
 		sh 'ant -f test.xml -v'  
-		junit 'reports/result.xml'
 	    }
 	}   
 	stage('Build') {    
@@ -16,7 +15,8 @@ pipeline {
 	}   
 	stage('Deploy') {  
 	    steps {  
-		sh 'echo in deploy step'  
+		sh 'echo in deploy step' 
+		junit 'reports/result.xml'
 	    }
 	}
 }
