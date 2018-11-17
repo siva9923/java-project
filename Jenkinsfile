@@ -2,20 +2,21 @@
 pipeline {
 	agent { label 'linux' }
 	stages {
-	stage('Test') {
+	stage('Unit Tests') {
 	    steps {
 		git 'https://github.com/siva9923/java-project.git'
-		sh 'ant -buildfile test.xml'   
+		sh 'ant -f test.xml -v'  
+		junit 'reports/result.xml'
 	    }
 	}   
 	stage('Build') {    
 	    steps {
-		sh 'ant'   
+		sh 'ant -f build.xml -v'   
 	    }
 	}   
-	stage('Results') {  
+	stage('Deploy') {  
 	    steps {  
-		junit 'reports/*.xml'   
+		sh 'echo in deploy step'  
 	    }
 	}
 }
