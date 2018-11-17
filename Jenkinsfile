@@ -18,9 +18,9 @@ pipeline {
 	    steps {  
 		sh 'echo in deploy step' 
 		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    		sh 'aws s3 mb s3://mybucket --region us-west-1'
+    		sh 'aws s3 mb s3://mybucket-assignment9 --region us-west-1'
 				}
-		sh 'aws s3 cp dist/rectangle*.jar s3://mybucket/'
+		sh 'aws s3 cp dist/rectangle*.jar s3://mybucket-assignment9/'
 		
 	    }
 	}
