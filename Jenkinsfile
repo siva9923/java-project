@@ -6,6 +6,7 @@ pipeline {
 	    steps {
 		git 'https://github.com/siva9923/java-project.git'
 		sh 'ant -f test.xml -v'  
+		junit 'reports/result.xml'
 	    }
 	}   
 	stage('Build') {    
@@ -16,7 +17,8 @@ pipeline {
 	stage('Deploy') {  
 	    steps {  
 		sh 'echo in deploy step' 
-		junit 'reports/result.xml'
+		sh 'aws s3 cp dist/rectangle*.jar s3://siva9923-assignment9/'
+		
 	    }
 	}
 }
