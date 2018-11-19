@@ -16,7 +16,7 @@ pipeline {
 	}   
 	stage('Deploy') {  
 	    steps {  
-		sh 'echo in deploy step' 
+		sh 'echo in deploy steps' 
 		sh 'aws s3 cp dist/rectangle*.jar s3://mybucket-assignment9/'
 		
 	    }
